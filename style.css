@@ -313,19 +313,29 @@ main {
 
 .previousStory,
 .nextStory {
+    display: flex;
     position: absolute;
-    border: 5px solid transparent;
+    border: 5px solid #fff;
+    border-radius: 50%;
     z-index: 9;
     color: rgb(115, 115, 115);
+    background-color: #fff;
     cursor: pointer;
     font-size: 12px;
+    width: 24px;
+    height: 24px;
 }
+
+/* display: flex;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 3.5px solid #000;
+    border-radius: 50%;
+    background-color: #78de45; */
 
 .previousStory:hover,
 .nextStory:hover {
-    border: 5px solid #fff;
-    background-color: rgb(255, 255, 255);
-    border-radius: 50%;
     transition: .5s ease;
 }
 
@@ -335,7 +345,16 @@ main {
 }
 
 .nextStory {
-    left: 425px;
+    top: 40px;
+    left: 410px;
+}
+
+.previousStory i,
+.nextStory i {
+    top: 0px;
+    left: 1px;
+    position: absolute;
+    font-size: 16px;
 }
 
 .story {
@@ -372,7 +391,7 @@ main {
     font-size: 12px;
     font-weight: 400;
     color: rgb(250, 250, 250);
-    margin-top: 5px;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -491,8 +510,13 @@ main {
 
 .postMessage p {
     margin-left: 5px;
+    margin-top: -1px;
     font-size: 14px;
     font-weight: 400;
+}
+
+#posts:nth-child(1) .postMessage p {
+    margin-top: 0px;
 }
 
 .postComments {
@@ -569,8 +593,12 @@ main {
 
 .firstProfile img {
     width: 62px;
-    height: 62px; 
+    height: 62px;
     border-radius: 50%;
+}
+
+.firstProfile span {
+    margin-left: -4px;
 }
 
 .firstProfile-info {
@@ -627,6 +655,8 @@ main {
 .otherProfile img {
     width: 38px;
     height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .otherProfile-info {
@@ -638,7 +668,17 @@ main {
 }
 
 .otherProfile span {
-    margin-left: 53px;
+    margin-left: 40px;
+}
+
+.otherProfile:nth-child(3) span,
+.otherProfile:nth-child(5) span  {
+    margin-left: 44px;
+}
+
+.otherProfile:nth-child(6) span,
+.otherProfile:nth-child(7) span {
+    margin-left: 50px;
 }
 
 .sideInfos {
@@ -1014,7 +1054,7 @@ main {
 }
 
 #upload #archive {
-    opacity: 0; 
+    opacity: 0;
     position: absolute;
     z-index: -1;
 }
@@ -1068,7 +1108,7 @@ main {
 
 .compass-content-img:nth-child(3) img,
 .compass-content-img:nth-child(4) img,
-.compass-content-img:nth-child(6) img{
+.compass-content-img:nth-child(6) img {
     object-position: right;
 }
 
@@ -1240,6 +1280,10 @@ main {
     height: 40px;
 }
 
+.profileShow-content:nth-child(5) {
+    z-index: 999999;
+}
+
 .profileShow-content:hover {
     background-color: rgb(12, 12, 12);
     cursor: pointer;
@@ -1276,4 +1320,53 @@ main {
 
 .profileShow-content:last-child p {
     margin-left: -1px;
+}
+
+.rd {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(144, 0, 255, .29);
+    z-index: 9;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.rd_final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    height: 250px;
+    width: 900px;
+    backdrop-filter: grayscale(100%);
+}
+
+.rd_final p {
+    background-color: rgba(144, 0, 255);
+    border-radius: 5px;
+    font-weight: 600;
+}
+
+#rd_input {
+    outline: none;
+    border-radius: 5px;
+    height: 20px;
+    margin: 15px 0;
+    background-color: #000;
+    border: 0;
+    color: #fff;
+}
+
+.rd_button {
+    background-color: #fff;
+    border-radius: 10px;
+    color: #000;
+    padding: 8px 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
 }

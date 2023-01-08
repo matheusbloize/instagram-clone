@@ -18,14 +18,14 @@ stories.addEventListener('click', (e) => {
     if (e.target === nextStory.querySelector('i')) {
         storiesSliders.style.marginLeft = '-470px'
         setTimeout(() => {
-            previousStory.style.display = 'block'
+            previousStory.style.display = 'flex'
             nextStory.style.display = 'none'
         }, 500)
     } else if (e.target === previousStory.querySelector('i')) {
         storiesSliders.style.marginLeft = ''
         setTimeout(() => {
             previousStory.style.display = 'none'
-            nextStory.style.display = 'block'
+            nextStory.style.display = 'flex'
         }, 500)
     }
 })
@@ -166,9 +166,6 @@ function borderAddRemove() {
     document.body.style.marginRight = '0px'
     iconAdd.classList.remove('show')
     document.querySelector('.border').style.border = '1px solid rgb(54, 54, 54)'
-    addArchive.querySelector('img').style.zoom = '0'
-    addArchive.removeChild(img)
-    document.querySelector('.addBorder').style.zIndex = '0'
     if (document.querySelector('.main').style.display === 'flex') {
         iconHome.classList.add('show')
     } else if (document.querySelector('.dm').style.display === 'flex') {
@@ -176,6 +173,8 @@ function borderAddRemove() {
     } else if (document.querySelector('.compass').style.display === 'flex') {
         iconCompass.classList.add('show')
     }
+    document.querySelector('.addBorder').style.zIndex = '0'
+
 }
 
 function heartRemove() {
@@ -204,6 +203,10 @@ function profileRemove() {
     }
 }
 
+let links = Array.from(document.querySelectorAll('.otherProfile a'))
+
+let RD = '🎈🎈🎈'
+
 document.addEventListener('click', (e) => {
     if (e.target === document.querySelector('.logo img')) {
         classLoop()
@@ -211,14 +214,64 @@ document.addEventListener('click', (e) => {
         render(iconHome.querySelector('i'))
     } else if (e.target === document.querySelector('.opacity')) {
         borderAddRemove()
+        addArchive.querySelector('img').style.zoom = '0'
+        img.parentElement.removeChild(img)
     } else if (document.querySelector('.heart').style.display === 'flex') {
         if (e.target !== document.querySelector('.heart') &&
             e.target !== iconHeart.querySelector('i') &&
             e.target !== document.querySelector('.heart-content') &&
-            e.target !== document.querySelector('.heart--content') &&
+            e.target !== document.querySelectorAll('.heart--content')[0] &&
+            e.target !== document.querySelectorAll('.heart--content')[0].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[0].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[0].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[0].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[0].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[1] &&
+            e.target !== document.querySelectorAll('.heart--content')[1].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[1].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[1].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[1].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[1].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[2] &&
+            e.target !== document.querySelectorAll('.heart--content')[2].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[2].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[2].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[2].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[2].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[3] &&
+            e.target !== document.querySelectorAll('.heart--content')[3].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[3].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[3].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[3].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[3].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[4] &&
+            e.target !== document.querySelectorAll('.heart--content')[4].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[4].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[4].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[4].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[4].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[5] &&
+            e.target !== document.querySelectorAll('.heart--content')[5].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[5].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[5].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[5].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[5].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[6] &&
+            e.target !== document.querySelectorAll('.heart--content')[6].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[6].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[6].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[6].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[6].querySelector('button') &&
+            e.target !== document.querySelectorAll('.heart--content')[7] &&
+            e.target !== document.querySelectorAll('.heart--content')[7].querySelector('img') &&
+            e.target !== document.querySelectorAll('.heart--content')[7].querySelector('h3') &&
+            e.target !== document.querySelectorAll('.heart--content')[7].querySelector('p') &&
+            e.target !== document.querySelectorAll('.heart--content')[7].querySelector('h6') &&
+            e.target !== document.querySelectorAll('.heart--content')[7].querySelector('button') &&
             e.target !== document.querySelectorAll('h5')[0] &&
-            e.target !== document.querySelectorAll('h5')[1]
+            e.target !== document.querySelectorAll('h5')[1] 
         ) {
+            
             heartRemove()
         }
     } else if (document.querySelector('.profileShow').style.display === 'flex') {
@@ -250,17 +303,64 @@ document.addEventListener('click', (e) => {
         addArchive.querySelector('img').style.zoom += .479
         document.querySelector('.addBorder').style.zIndex = '999'
     } else if (e.target.getAttribute('img-key')) {
-        // * PENSAR EM UM ZOOM QUANDO CLICAR NAS FOTOS
-        // e.target.style.position = 'absolute'
-        // e.target.style.width = '900px'
-        // e.target.style.height = '834px'
-        // setTimeout(() => {
-        //     e.target.style.position = 'static'
-        //     e.target.style.width = '295px'
-        //     e.target.style.height = '295px'
-        // }, 500)
+        scrollTo(0, 0)
+        e.target.style.position = 'absolute'
+        e.target.style.width = '100vw'
+        e.target.style.height = '100vh'
+        e.target.style.top = '0px'
+        e.target.style.left = '0px'
+        setTimeout(() => {
+            e.target.style.position = 'static'
+            e.target.style.width = ''
+            e.target.style.height = ''
+            e.target.style.top = ''
+            e.target.style.left = ''
+        }, 500)
+    } else if (e.target === document.querySelector('.firstProfile img')) {
+        scrollTo(0, 0)
+        document.querySelector('.rd').style.display = 'flex'
+        document.querySelector('body').style.overflow = 'hidden'
+        iconHome.querySelector('i').style.pointerEvents = 'none'
+        document.querySelector('.logo img').style.pointerEvents = 'none'
+        iconMsg.querySelector('i').style.pointerEvents = 'none'
+        document.querySelector('.border').style.pointerEvents = 'none'
+        iconCompass.querySelector('i').style.pointerEvents = 'none'
+        iconHeart.querySelector('i').style.pointerEvents = 'none'
+        iconProfile.querySelector('img').style.pointerEvents = 'none'
+    } else if (
+        e.target === document.querySelectorAll('.otherProfile a')[0] ||
+        e.target === document.querySelectorAll('.otherProfile a')[1] ||
+        e.target === document.querySelectorAll('.otherProfile a')[2] ||
+        e.target === document.querySelectorAll('.otherProfile a')[3] ||
+        e.target === document.querySelectorAll('.otherProfile a')[4] ||
+        e.target === document.querySelector('.firstProfile a') ||
+        e.target === document.querySelectorAll('#posts')[0].querySelectorAll('.postIcons i')[0] ||
+        e.target === document.querySelectorAll('#posts')[0].querySelectorAll('.postIcons i')[1] ||
+        e.target === document.querySelectorAll('#posts')[0].querySelectorAll('.postIcons i')[2] ||
+        e.target === document.querySelectorAll('#posts')[0].querySelectorAll('.postIcons i')[3] ||
+        e.target === document.querySelectorAll('#posts')[1].querySelectorAll('.postIcons i')[0] ||
+        e.target === document.querySelectorAll('#posts')[1].querySelectorAll('.postIcons i')[1] ||
+        e.target === document.querySelectorAll('#posts')[1].querySelectorAll('.postIcons i')[2] ||
+        e.target === document.querySelectorAll('#posts')[1].querySelectorAll('.postIcons i')[3] ||
+        e.target === document.querySelectorAll('#posts')[2].querySelectorAll('.postIcons i')[0] ||
+        e.target === document.querySelectorAll('#posts')[2].querySelectorAll('.postIcons i')[1] ||
+        e.target === document.querySelectorAll('#posts')[2].querySelectorAll('.postIcons i')[2] ||
+        e.target === document.querySelectorAll('#posts')[2].querySelectorAll('.postIcons i')[3] ||
+        e.target === document.querySelectorAll('#posts')[3].querySelectorAll('.postIcons i')[0] ||
+        e.target === document.querySelectorAll('#posts')[3].querySelectorAll('.postIcons i')[1] ||
+        e.target === document.querySelectorAll('#posts')[3].querySelectorAll('.postIcons i')[2] ||
+        e.target === document.querySelectorAll('#posts')[3].querySelectorAll('.postIcons i')[3] ||
+        e.target === document.querySelectorAll('#posts')[0].querySelector('.commentItens a') ||
+        e.target === document.querySelectorAll('#posts')[1].querySelector('.commentItens a') ||
+        e.target === document.querySelectorAll('#posts')[2].querySelector('.commentItens a') ||
+        e.target === document.querySelectorAll('#posts')[3].querySelector('.commentItens a')
+    ) {
+        // console.log(e.target)
+        e.preventDefault()
     }
 })
+
+console.log(document.querySelectorAll('#posts')[0].querySelectorAll('.postIcons i')[0])
 
 function resizeAdd() {
     if (document.querySelector('main').style.height === '80vh') {
@@ -321,28 +421,131 @@ archive.addEventListener('change', (e) => {
     }
 })
 
-// ADD RANDOM USERS PHOTOS
-
-// console.log(userImg)
-// let randomUser = userImg.reduce((acum, atual) => {
-//     return parseInt(Math.random() * 12 + 1)
-// })
-// console.log(randomUser)
+// ACTIVATED JS / RANDOM NUMBERS
 
 for (i = 0; i < 12; i++) {
-    document.querySelectorAll('.story img:nth-child(2)')[i].src = `assets/images/users/user${i + 1}.jpg`
     document.querySelectorAll('.compass-content-img img')[i].src = `assets/images/discover/discover${i + 1}.jpg`
-    document.querySelectorAll('.contact img')[i].src = `assets/images/users/user${i + 1}.jpg`
 }
 for (i = 0; i < 7; i++) {
     document.querySelectorAll('.heart--content img')[i].src = `assets/images/users/user${i + 1}.jpg`
+    document.querySelectorAll('.heart--content h3')[i].textContent = `${userName[i].toLowerCase()}`
+    document.querySelectorAll('.contact img')[i].src = `assets/images/users/user${i + 1}.jpg`
+    document.querySelectorAll('.contact-info h4')[i].textContent = `${userName[i].toLowerCase()}`
+}
+for (i = 0; i < 6; i++) {
+    document.querySelectorAll('.story img:nth-child(2)')[i].src = `assets/images/users/user${i + 1}.jpg`
+    let arr4 = []
+    arr4.push(...userName[i])
+    arr4.splice(-5)
+    document.querySelectorAll('.story h2')[i].textContent = `${arr4.join('').toLowerCase()}...`
+
+}
+for (i = 0; i < 5; i++) {
+    document.querySelectorAll('.otherProfile img')[i].src = `assets/images/users/user${i + 8}.jpg`
+    document.querySelectorAll('.otherProfile-info h2')[i].textContent = `${userName[i + 7].toLowerCase()}`
+}
+for (i = 0; i < 4; i++) {
+    let randomLikeFirstNumber = parseInt(Math.random() * 9)
+    let randomLikeNumbers = parseInt(Math.random() * (999 - 100 + 1) + 100)
+    if (randomLikeNumbers && randomLikeFirstNumber !== 0) {
+        randomLikeNumbers = `${randomLikeFirstNumber}.${randomLikeNumbers}`
+    }
+    document.querySelectorAll('.likes')[i].textContent = `${randomLikeNumbers} curtidas`
+
+    let randomPostComments = parseInt(Math.random() * 100)
+    document.querySelectorAll('.postComments span')[i].textContent = randomPostComments
+
+    let randomHour = parseInt(Math.random() * 13)
+    if (randomHour <= 2 && randomHour >= 1) {
+        document.querySelectorAll('.postInfo span')[i].textContent = `Há ${randomHour === 1 ? `${randomHour} dia` : `${randomHour} dias`}`
+    } else if (randomHour !== 0) {
+        document.querySelectorAll('.postInfo span')[i].textContent = `Há ${randomHour} horas`
+    }
 }
 
-document.querySelectorAll('.post img')[0].src= `assets/images/discover/discover5.jpg`
-document.querySelectorAll('.postHead-info img:nth-child(2)')[0].src= `assets/images/users/user4.jpg`
-document.querySelectorAll('.post img')[1].src= `assets/images/discover/discover11.jpg`
-document.querySelectorAll('.postHead-info img:nth-child(2)')[1].src= `assets/images/users/user6.jpg`
-document.querySelectorAll('.post img')[2].src= `assets/images/discover/discover10.jpg`
-document.querySelectorAll('.postHead-info img:nth-child(2)')[2].src= `assets/images/users/user5.jpg`
-document.querySelectorAll('.post img')[3].src= `assets/images/discover/discover12.jpg`
-document.querySelectorAll('.postHead-info img:nth-child(2)')[3].src= `assets/images/users/user8.jpg`
+// ACTIVATED JS / SELECTED INFO
+
+document.querySelectorAll('.post img')[0].src = `assets/images/discover/discover5.jpg`
+document.querySelectorAll('.postHead-info img:nth-child(2)')[0].src = `assets/images/users/user4.jpg`
+document.querySelectorAll('.postHead-info .name h2')[0].textContent = `${userName[3].toLowerCase()}`
+document.querySelectorAll('.postMessage h2')[0].textContent = `${userName[3].toLowerCase()}`
+document.querySelectorAll('.postMessage p')[0].textContent = `Japan Street Photography`
+document.querySelectorAll('.post img')[1].src = `assets/images/discover/discover11.jpg`
+document.querySelectorAll('.postHead-info img:nth-child(2)')[1].src = `assets/images/users/user6.jpg`
+document.querySelectorAll('.postHead-info .name h2')[1].textContent = `${userName[5].toLowerCase()}`
+document.querySelectorAll('.postMessage h2')[1].textContent = `${userName[5].toLowerCase()}`
+document.querySelectorAll('.postMessage p')[1].textContent = `📸👩‍👧❤️`
+document.querySelectorAll('.post img')[2].src = `assets/images/discover/discover10.jpg`
+document.querySelectorAll('.postHead-info img:nth-child(2)')[2].src = `assets/images/users/user5.jpg`
+document.querySelectorAll('.postHead-info .name h2')[2].textContent = `${userName[4].toLowerCase()}`
+document.querySelectorAll('.postMessage h2')[2].textContent = `${userName[4].toLowerCase()}`
+document.querySelectorAll('.postMessage p')[2].textContent = `We go GYM!!!! 🔱`
+document.querySelectorAll('.post img')[3].src = `assets/images/discover/discover12.jpg`
+document.querySelectorAll('.postHead-info img:nth-child(2)')[3].src = `assets/images/users/user2.jpg`
+document.querySelectorAll('.postHead-info .name h2')[3].textContent = `${userName[1].toLowerCase()}`
+document.querySelectorAll('.postMessage h2')[3].textContent = `${userName[1].toLowerCase()}`
+document.querySelectorAll('.postMessage p')[3].textContent = `Barbecue!!! 🍖🌶️🔥`
+
+// RD
+
+const rdInput = document.querySelector('#rd_input')
+document.querySelector('.rd_button').addEventListener('click', (e) => {
+    e.preventDefault()
+    console.log(e.target)
+    if (rdInput.value === '🎈🎈🎈') {
+        console.log('rd')
+    } else {
+        document.querySelector('.rd').innerHTML = `
+        Não foi dessa vez!
+        <br>
+        😭😭😭😭😭😭
+        `
+        document.querySelector('.rd').zoom = 2
+        setTimeout(()=>{
+            // reset do rd
+            rdInput.value = ''
+            document.querySelector('.rd').style.display = 'none'
+        }, 2000)
+    }
+})
+
+
+/* <div class="rd">
+        <div class="rd_final">
+            <p>Se você foi curioso(a) e clicou em vários botões, use o seu "ctrl v" aqui e envie!</p>
+            <input type="text" name="" id="rd_input">
+            <button class="rd_button">enviar</button>
+        </div>
+    </div>
+.rd_final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    height: 250px;
+    width: 900px;
+    backdrop-filter: grayscale(100%);
+}
+.rd_final p {
+    background-color: rgba(144, 0, 255);
+    border-radius: 5px;
+    font-weight: 600;
+}
+#rd_input {
+    outline: none;
+    border-radius: 5px;
+    height: 20px;
+    margin: 15px 0;
+    background-color: #000;
+    border: 0;
+}
+.rd_button {
+    background-color: #fff;
+    border-radius: 10px;
+    color: #000;
+    padding: 8px 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+} */

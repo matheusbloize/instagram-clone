@@ -12,3 +12,18 @@ let userImg = [
     'user11.jpg',
     'user12.jpg'
 ]
+
+let userName = [
+    'Ashhley.filler',
+    '_Jareth_pepper',
+    'Apollo.banyert',
+    'Sigmund.singed',
+    'Luke.skywalker',
+    'Christine.daae',
+    'Castiel.lichul',
+    'Brandon_castle',
+    'Takezo.musashi',
+    'Sarah__johnnes',
+    'Johan_liboster',
+    'Nina.gitanty__'
+]
