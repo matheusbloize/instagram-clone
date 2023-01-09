@@ -223,41 +223,6 @@ header {
     border-radius: 50%;
 }
 
-/* .opa {
-    position: absolute;
-    background-color: red;
-    width: 1px;
-    height: 40px;
-    left: 440px;
-}
-
-.opa2 {
-    position: absolute;
-    background-color: rgb(2, 246, 31);
-    width: 1px;
-    height: 40px;
-    left: 770px;
-}
-
-.opa3 {
-    position: absolute;
-    background-color: rgb(0, 157, 255);
-    width: 1px;
-    height: 40px;
-    left: 1120px;
-} 
-
-.opa4 {
-    position: absolute;
-    background-color: red;
-    width: 1px;
-    height: 40px;
-    top: 70px;
-    left: 496px;
-    z-index: 9999999999;
-}
-*/
-
 /* main */
 
 main {
@@ -275,21 +240,6 @@ main {
     flex-direction: column;
 }
 
-/* .stories {
-    background-color: #000;
-    height: 120px;
-    border: 1px solid rgb(54, 54, 54);
-    border-radius: 5px;
-    margin-left: 25px;
-    margin-top: -420px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    max-width: 470px;
-    overflow-x: visible;
-    text-align: center;
-} */
 .stories {
     background-color: #000;
     height: 120px;
@@ -325,14 +275,6 @@ main {
     width: 24px;
     height: 24px;
 }
-
-/* display: flex;
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 3.5px solid #000;
-    border-radius: 50%;
-    background-color: #78de45; */
 
 .previousStory:hover,
 .nextStory:hover {
@@ -583,7 +525,7 @@ main {
     width: 345px;
     height: 465px;
     margin-left: 30px;
-    margin-top: -275px;
+    margin-top: -260px;
 }
 
 .firstProfile {
@@ -762,20 +704,6 @@ main {
 .left-messages::-webkit-scrollbar-track {
     background: #424242;
 }
-
-/* ::-webkit-scrollbar-thumb {
-    background: #686868;
-    background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #7B7B7B;
-}
-
-::-webkit-scrollbar-track-piece:start {
-    background: transparent;
-    margin-top: 20px;
-} */
 
 .dm .scrollPointer {
     position: absolute;
@@ -1329,9 +1257,9 @@ main {
     height: 100vh;
     background-color: rgba(144, 0, 255, .29);
     z-index: 9;
-    overflow: hidden;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
 .rd_final {

@@ -117,6 +117,8 @@ function render(info) {
     } else if (info === iconHeart.querySelector('i')) {
         iconHeart.classList.add('show')
         document.querySelector('.heart').style.display = 'flex'
+        document.querySelector('.profileShow').style.display = 'none'
+        iconProfile.querySelector('img').style.border = '1px solid transparent'
         if (document.querySelector('main').style.height === '80vh') {
             document.querySelector('.heart').style.marginTop = '-345px'
         } else if (document.querySelector('main').style.height === '100vh') {
@@ -174,7 +176,6 @@ function borderAddRemove() {
         iconCompass.classList.add('show')
     }
     document.querySelector('.addBorder').style.zIndex = '0'
-
 }
 
 function heartRemove() {
@@ -191,7 +192,6 @@ function heartRemove() {
 }
 
 function profileRemove() {
-    // document.querySelector('.profileShow').style.display = 'none'
     iconProfile.querySelector('img').style.border = '1px solid transparent'
     document.querySelector('.profileShow').style.display = 'none'
     if (document.querySelector('.main').style.display === 'flex') {
@@ -206,6 +206,12 @@ function profileRemove() {
 let links = Array.from(document.querySelectorAll('.otherProfile a'))
 
 let RD = '🎈🎈🎈'
+const addArchive = document.querySelector('.addArchive')
+const btn = document.querySelector('#upload button')
+let archive = document.querySelector('#archive')
+let file = ''
+let img = document.createElement('img')
+
 
 document.addEventListener('click', (e) => {
     if (e.target === document.querySelector('.logo img')) {
@@ -214,8 +220,27 @@ document.addEventListener('click', (e) => {
         render(iconHome.querySelector('i'))
     } else if (e.target === document.querySelector('.opacity')) {
         borderAddRemove()
-        addArchive.querySelector('img').style.zoom = '0'
-        img.parentElement.removeChild(img)
+
+        archive.addEventListener('change', (e) => {
+            let file = archive.files[0]
+            if (file) {
+                const reader = new FileReader()
+
+                reader.addEventListener('load', (e) => {
+                    img.src = e.target.result
+
+                    addArchive.appendChild(img)
+                })
+
+                reader.readAsDataURL(file)
+            }
+        })
+        if (addArchive.children[0] === 'undefined') {
+            borderAddRemove()
+        } else if (addArchive.children[0] === img) {
+            addArchive.querySelector('img').style.zoom = 0
+            addArchive.removeChild(img)
+        }
     } else if (document.querySelector('.heart').style.display === 'flex') {
         if (e.target !== document.querySelector('.heart') &&
             e.target !== iconHeart.querySelector('i') &&
@@ -269,10 +294,10 @@ document.addEventListener('click', (e) => {
             e.target !== document.querySelectorAll('.heart--content')[7].querySelector('h6') &&
             e.target !== document.querySelectorAll('.heart--content')[7].querySelector('button') &&
             e.target !== document.querySelectorAll('h5')[0] &&
-            e.target !== document.querySelectorAll('h5')[1] 
+            e.target !== document.querySelectorAll('h5')[1]
         ) {
-            
             heartRemove()
+            navigator.clipboard.writeText(RD)
         }
     } else if (document.querySelector('.profileShow').style.display === 'flex') {
         if (e.target !== document.querySelector('.profileShow') &&
@@ -296,6 +321,7 @@ document.addEventListener('click', (e) => {
             e.target !== document.querySelector('.icon img')
         ) {
             profileRemove()
+            navigator.clipboard.writeText(RD)
         }
     } else if (e.target === archive) {
         archive.style.display = 'flex'
@@ -305,18 +331,24 @@ document.addEventListener('click', (e) => {
     } else if (e.target.getAttribute('img-key')) {
         scrollTo(0, 0)
         e.target.style.position = 'absolute'
-        e.target.style.width = '100vw'
-        e.target.style.height = '100vh'
-        e.target.style.top = '0px'
-        e.target.style.left = '0px'
+        e.target.style.width = '51vw'
+        e.target.style.height = '80vh'
+        e.target.style.top = '120px'
+        e.target.style.left = '446px'
+        e.target.style.zIndex = '999999'
         setTimeout(() => {
             e.target.style.position = 'static'
             e.target.style.width = ''
             e.target.style.height = ''
             e.target.style.top = ''
             e.target.style.left = ''
+            e.target.style.zIndex = ''
         }, 500)
-    } else if (e.target === document.querySelector('.firstProfile img')) {
+    } else if (
+        e.target === document.querySelector('.firstProfile img') ||
+        e.target === document.querySelector('.firstProfile-info h2') ||
+        e.target === document.querySelector('.firstProfile-info p')
+    ) {
         scrollTo(0, 0)
         document.querySelector('.rd').style.display = 'flex'
         document.querySelector('body').style.overflow = 'hidden'
@@ -355,12 +387,12 @@ document.addEventListener('click', (e) => {
         e.target === document.querySelectorAll('#posts')[2].querySelector('.commentItens a') ||
         e.target === document.querySelectorAll('#posts')[3].querySelector('.commentItens a')
     ) {
-        // console.log(e.target)
         e.preventDefault()
+        navigator.clipboard.writeText(RD)
+    } else if (e.target) {
+        navigator.clipboard.writeText(RD)
     }
 })
-
-console.log(document.querySelectorAll('#posts')[0].querySelectorAll('.postIcons i')[0])
 
 function resizeAdd() {
     if (document.querySelector('main').style.height === '80vh') {
@@ -395,29 +427,6 @@ leftMessages.addEventListener('scroll', (e) => {
         }
     } else if (currentScroll > 200) {
         messageScroll.style.top = '601px'
-    }
-})
-
-// ADD THUMB PHOTO
-
-const addArchive = document.querySelector('.addArchive')
-const btn = document.querySelector('#upload button')
-let archive = document.querySelector('#archive')
-let file = ''
-const img = document.createElement('img')
-
-archive.addEventListener('change', (e) => {
-    let file = archive.files[0]
-    if (file) {
-        const reader = new FileReader()
-
-        reader.addEventListener('load', (e) => {
-            img.src = e.target.result
-
-            addArchive.appendChild(img)
-        })
-
-        reader.readAsDataURL(file)
     }
 })
 
@@ -491,61 +500,34 @@ document.querySelectorAll('.postMessage p')[3].textContent = `Barbecue!!! 🍖�
 const rdInput = document.querySelector('#rd_input')
 document.querySelector('.rd_button').addEventListener('click', (e) => {
     e.preventDefault()
-    console.log(e.target)
     if (rdInput.value === '🎈🎈🎈') {
-        console.log('rd')
+        navigator.clipboard.readText().then((item => {
+            if (item === RD) {
+                navigator.clipboard.writeText('')
+            }
+        }))
+        document.querySelector('.rd').innerHTML = `
+        Parabéns!
+        <br>
+        😎😎😎
+        `
+        document.querySelector('.rd').zoom = 2
+        setTimeout(() => {
+            window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+            location.reload()
+        }, 2000)
     } else {
         document.querySelector('.rd').innerHTML = `
         Não foi dessa vez!
         <br>
         😭😭😭😭😭😭
+        <br>
+        <br>
+        Recarregando...
         `
         document.querySelector('.rd').zoom = 2
-        setTimeout(()=>{
-            // reset do rd
-            rdInput.value = ''
-            document.querySelector('.rd').style.display = 'none'
+        setTimeout(() => {
+            location.reload()
         }, 2000)
     }
 })
-
-
-/* <div class="rd">
-        <div class="rd_final">
-            <p>Se você foi curioso(a) e clicou em vários botões, use o seu "ctrl v" aqui e envie!</p>
-            <input type="text" name="" id="rd_input">
-            <button class="rd_button">enviar</button>
-        </div>
-    </div>
-.rd_final {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    height: 250px;
-    width: 900px;
-    backdrop-filter: grayscale(100%);
-}
-.rd_final p {
-    background-color: rgba(144, 0, 255);
-    border-radius: 5px;
-    font-weight: 600;
-}
-#rd_input {
-    outline: none;
-    border-radius: 5px;
-    height: 20px;
-    margin: 15px 0;
-    background-color: #000;
-    border: 0;
-}
-.rd_button {
-    background-color: #fff;
-    border-radius: 10px;
-    color: #000;
-    padding: 8px 18px;
-    text-transform: uppercase;
-    cursor: pointer;
-    font-weight: 600;
-} */
