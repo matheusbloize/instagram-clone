@@ -10,7 +10,7 @@ body {
     color: #fff;
     background-color: rgb(27, 27, 27);
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -91,6 +91,40 @@ body .scroll {
     z-index: 999;
     width: 15px;
     height: 100vh;
+}
+
+.load {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: center;
+    background-color: #fff;
+    width: 100vw;
+    height: 417vh;
+    z-index: 999;
+    cursor: context-menu;
+}
+
+.load img {
+    margin-top: 412px;
+    width: 64px;
+    height: 64px;
+}
+
+.load p {
+    margin-top: 15px;
+    margin-left: 8px;
+    color: #424242;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blinker 1s ease 3.5;
 }
 
 img,
@@ -411,7 +445,7 @@ main {
 
 .post img {
     height: 590px;
-    width: 468px;
+    width: 469px;
     object-fit: cover;
 }
 
@@ -614,7 +648,7 @@ main {
 }
 
 .otherProfile:nth-child(3) span,
-.otherProfile:nth-child(5) span  {
+.otherProfile:nth-child(5) span {
     margin-left: 44px;
 }
 
@@ -1120,7 +1154,7 @@ main {
     border-right: 9px solid transparent;
     border-bottom: 9px solid rgb(38, 38, 38);
     position: fixed;
-    top: 50px;
+    top: 51px;
     right: 495px;
     z-index: 99999999;
 }
@@ -1248,6 +1282,17 @@ main {
 
 .profileShow-content:last-child p {
     margin-left: -1px;
+}
+
+.triangle2 {
+    background-color: transparent;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid rgb(38, 38, 38);
+    position: fixed;
+    top: 50px;
+    right: 446px;
+    z-index: 99999999;
 }
 
 .rd {

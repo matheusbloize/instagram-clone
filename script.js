@@ -1,3 +1,16 @@
+let interval = setInterval(()=>{
+    if(scrollY !== 0) {
+        scrollTo(0, 0)
+    }
+}, 100)
+setTimeout(()=> {
+    document.body.style.overflowY = 'scroll'
+    document.querySelector('.load').style.display = 'none'
+    clearInterval(interval)
+}, 3500)
+
+
+
 // ICONS
 
 const iconHome = document.querySelectorAll('.icon')[0]
@@ -85,6 +98,7 @@ Array.from(document.querySelectorAll('.icon')).forEach(icon => {
                 profileRemove()
             } else {
                 render(e.target)
+                document.querySelector('header').style.zIndex = '99'
             }
         }
     })
@@ -180,19 +194,26 @@ function borderAddRemove() {
 
 function heartRemove() {
     document.querySelector('.heart').style.display = 'none'
-    document.querySelector('header').style.zIndex = '9999'
+    if(document.querySelector('.profileShow').style.display === 'flex') {
+        document.querySelector('header').style.zIndex = '99'
+    } else {
+        document.querySelector('header').style.zIndex = '9999'
+    }
     iconHeart.classList.remove('show')
-    if (document.querySelector('.main').style.display === 'flex' && document.querySelector('main').style.height === '100vh') {
+    if (document.querySelector('.profileShow').style.display === 'flex') {
+        iconProfile.querySelector('img').style.border = '1px solid #fff'
+    } else if (document.querySelector('.main').style.display === 'flex' && document.querySelector('main').style.height === '100vh') {
         iconHome.classList.add('show')
     } else if (document.querySelector('.dm').style.display === 'flex') {
         iconMsg.classList.add('show')
     } else if (document.querySelector('.compass').style.display === 'flex') {
         iconCompass.classList.add('show')
-    }
+    } 
 }
 
 function profileRemove() {
     iconProfile.querySelector('img').style.border = '1px solid transparent'
+    document.querySelector('header').style.zIndex = '9999'
     document.querySelector('.profileShow').style.display = 'none'
     if (document.querySelector('.main').style.display === 'flex') {
         iconHome.classList.add('show')
@@ -212,6 +233,21 @@ let archive = document.querySelector('#archive')
 let file = ''
 let img = document.createElement('img')
 
+archive.addEventListener('change', (e) => {
+    let file = archive.files[0]
+    if (file) {
+        const reader = new FileReader()
+
+        reader.addEventListener('load', (e) => {
+            img.src = e.target.result
+
+            addArchive.appendChild(img)
+        })
+
+        reader.readAsDataURL(file)
+    }
+})
+
 
 document.addEventListener('click', (e) => {
     if (e.target === document.querySelector('.logo img')) {
@@ -220,24 +256,7 @@ document.addEventListener('click', (e) => {
         render(iconHome.querySelector('i'))
     } else if (e.target === document.querySelector('.opacity')) {
         borderAddRemove()
-
-        archive.addEventListener('change', (e) => {
-            let file = archive.files[0]
-            if (file) {
-                const reader = new FileReader()
-
-                reader.addEventListener('load', (e) => {
-                    img.src = e.target.result
-
-                    addArchive.appendChild(img)
-                })
-
-                reader.readAsDataURL(file)
-            }
-        })
-        if (addArchive.children[0] === 'undefined') {
-            borderAddRemove()
-        } else if (addArchive.children[0] === img) {
+        if (addArchive.children[0] === img) {
             addArchive.querySelector('img').style.zoom = 0
             addArchive.removeChild(img)
         }
@@ -327,6 +346,7 @@ document.addEventListener('click', (e) => {
         archive.style.display = 'flex'
     } else if (e.target === addArchive.querySelector('img')) {
         addArchive.querySelector('img').style.zoom += .479
+        addArchive.querySelector('img').style.marginTop = '1px'
         document.querySelector('.addBorder').style.zIndex = '999'
     } else if (e.target.getAttribute('img-key')) {
         scrollTo(0, 0)
@@ -391,7 +411,7 @@ document.addEventListener('click', (e) => {
         navigator.clipboard.writeText(RD)
     } else if (e.target) {
         navigator.clipboard.writeText(RD)
-    }
+    } 
 })
 
 function resizeAdd() {
@@ -501,17 +521,11 @@ const rdInput = document.querySelector('#rd_input')
 document.querySelector('.rd_button').addEventListener('click', (e) => {
     e.preventDefault()
     if (rdInput.value === '🎈🎈🎈') {
-        navigator.clipboard.readText().then((item => {
-            if (item === RD) {
-                navigator.clipboard.writeText('')
-            }
-        }))
         document.querySelector('.rd').innerHTML = `
         Parabéns!
         <br>
         😎😎😎
         `
-        document.querySelector('.rd').zoom = 2
         setTimeout(() => {
             window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
             location.reload()
@@ -525,7 +539,6 @@ document.querySelector('.rd_button').addEventListener('click', (e) => {
         <br>
         Recarregando...
         `
-        document.querySelector('.rd').zoom = 2
         setTimeout(() => {
             location.reload()
         }, 2000)
