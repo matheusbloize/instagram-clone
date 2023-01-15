@@ -1,0 +1,206 @@
+@media (min-width: 1596px) {
+    .main {
+        margin-top: 2%;
+    }
+
+    .dm {
+        height: 119%;
+    }
+}
+
+@media (min-width: 1088px) and (max-width: 1595px) {
+    .main {
+        margin-top: 7%;
+    }
+
+    .heart {
+        margin-top: -31%;
+    }
+
+    .profileShow {
+        margin-top: -40%;
+    }
+
+    .triangle, .triangle2 {
+        opacity: 0;
+    }
+}
+
+@media (min-width: 821px) and (max-width: 1087px) {
+    header {
+        display: flex;
+    }
+
+    .main {
+        margin-top: 10%;
+    }
+
+    .dm .scrollPointer {
+        z-index: -1;
+    }
+
+    .dm .scroll {
+        z-index: -1;
+    }
+}
+
+
+@media (max-width: 820px) {
+    header {
+        width: 100%;
+        border-bottom: 0;
+    }
+
+    .main {
+        margin-top: 30%;
+    }
+
+    .search {
+        display: none;
+    }
+
+    .icons {
+        margin-right: 13%;
+    }
+
+    .icon:nth-child(1),
+    .icon:nth-child(4),
+    .icon:nth-child(6) {
+        display: none;
+    }
+
+    .icon:nth-child(2) {
+        position: absolute;
+        left: 95%;
+    }
+
+    .icon:nth-child(7) {
+        left: -4px;
+        top: 3px;
+    }
+
+    .border-bottom {
+        opacity: 1;
+    }
+
+    .aside {
+        display: none;
+    }
+
+    .stories {
+        margin-top: -64%;
+        height: 15vh;
+        margin-left: 8%;
+        border-radius: 0px;
+    }
+
+    .story:nth-child(6) {
+        margin-left: 10px;
+    }
+
+    .previousStory {
+        left: 39px;
+        top: 34px;
+    }
+
+    .nextStory {
+        top: 33px;
+        left: 385px;
+    }
+
+    #posts {
+        margin-top: 0px;
+        border: 0;
+        border-radius: 0;
+        height: 700%;
+    }
+
+    .posts {
+        width: 85%;
+        margin-left: 8%;
+    }
+
+    .post img {
+        height: 100%;
+        width: 100%;
+    }
+
+    .points {
+        margin-top: 0;
+        margin-left: 50%;
+        rotate: 90deg;
+    }
+
+    .postIcons a:nth-child(4) {
+        margin-left: 62%;
+    }
+
+    .comment {
+        display: none;
+    }
+
+    .mobile {
+        display: flex;
+        margin-left: 10%;
+    }
+
+    .add {
+        width: 300px;
+        height: 400px;
+    }
+
+    .addImg {
+        margin-top: 80px;
+    }
+
+    .addImg2 {
+        left: 135px;
+        top: 124px;
+    }
+
+    .add p {
+        font-size: 14px;
+        margin-top: 50px;
+    }
+
+    #upload {
+        margin-top: 35px;
+    }
+
+    .opacity {
+        width: 110%;
+    }
+
+    .addBorder {
+        width: 100%;
+    }
+
+    .right,
+    .dm .scrollPointer,
+    .dm .scroll {
+        display: none;
+    }
+
+    .heart {
+        margin-right: 40%;
+        width: 115%;
+    }
+
+    .heart--content {
+        flex-direction: column;
+    }
+
+    .heart--content button {
+        left: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .main {
+        margin-top: -72%;
+    }
+    
+    .stories {
+        margin-top: -44%;
+    }
+}

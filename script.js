@@ -1,9 +1,9 @@
-let interval = setInterval(()=>{
-    if(scrollY !== 0) {
+let interval = setInterval(() => {
+    if (scrollY !== 0) {
         scrollTo(0, 0)
     }
 }, 100)
-setTimeout(()=> {
+setTimeout(() => {
     document.body.style.overflowY = 'scroll'
     document.querySelector('.load').style.display = 'none'
     clearInterval(interval)
@@ -28,18 +28,34 @@ const nextStory = document.querySelector('.nextStory')
 const previousStory = document.querySelector('.previousStory')
 const lastStory = document.querySelector('.story.last')
 stories.addEventListener('click', (e) => {
-    if (e.target === nextStory.querySelector('i')) {
-        storiesSliders.style.marginLeft = '-470px'
-        setTimeout(() => {
-            previousStory.style.display = 'flex'
-            nextStory.style.display = 'none'
-        }, 500)
-    } else if (e.target === previousStory.querySelector('i')) {
-        storiesSliders.style.marginLeft = ''
-        setTimeout(() => {
-            previousStory.style.display = 'none'
-            nextStory.style.display = 'flex'
-        }, 500)
+    if (screen.availWidth > 820) {
+        if (e.target === nextStory.querySelector('i')) {
+            storiesSliders.style.marginLeft = '-470px'
+            setTimeout(() => {
+                previousStory.style.display = 'flex'
+                nextStory.style.display = 'none'
+            }, 500)
+        } else if (e.target === previousStory.querySelector('i')) {
+            storiesSliders.style.marginLeft = ''
+            setTimeout(() => {
+                previousStory.style.display = 'none'
+                nextStory.style.display = 'flex'
+            }, 500)
+        }
+    } else if (screen.availWidth <= 820) {
+        if (e.target === nextStory.querySelector('i')) {
+            storiesSliders.style.marginLeft = '-88%'
+            setTimeout(() => {
+                previousStory.style.display = 'flex'
+                nextStory.style.display = 'none'
+            }, 500)
+        } else if (e.target === previousStory.querySelector('i')) {
+            storiesSliders.style.marginLeft = ''
+            setTimeout(() => {
+                previousStory.style.display = 'none'
+                nextStory.style.display = 'flex'
+            }, 500)
+        }
     }
 })
 
@@ -134,9 +150,19 @@ function render(info) {
         document.querySelector('.profileShow').style.display = 'none'
         iconProfile.querySelector('img').style.border = '1px solid transparent'
         if (document.querySelector('main').style.height === '80vh') {
-            document.querySelector('.heart').style.marginTop = '-345px'
+            if (screen.availWidth < 1595 && screen.availWidth > 1088) {
+                document.querySelector('.heart').style.marginTop = '-20%'
+            } else {
+                document.querySelector('.heart').style.marginTop = '-345px'
+            }
         } else if (document.querySelector('main').style.height === '100vh') {
-            document.querySelector('.heart').style.marginTop = '-525px'
+            if (screen.availWidth > 820 && screen.availWidth < 1088) {
+                document.querySelector('.heart').style.marginTop = '-525px'
+            } else if (screen.availWidth <= 820) {
+                document.querySelector('.heart').style.marginTop = '-90%'
+            } else if (screen.availWidth < 1595 && screen.availWidth > 1088) {
+                document.querySelector('.heart').style.marginTop = '-31%'
+            }
         }
     } else if (info === document.querySelector('.border')) {
         iconAdd.classList.add('show')
@@ -160,10 +186,18 @@ function render(info) {
         iconProfile.querySelector('img').style.border = '1px solid #fff'
         if (document.querySelector('.main').style.display === 'flex' && document.querySelector('main').style.height === '100vh' || document.querySelector('.compass').style.display === 'flex') {
             document.querySelector('.profileShow').style.display = 'flex'
-            document.querySelector('.profileShow').style.marginTop = '-660px'
+            if(screen.availWidth < 1595 && screen.availWidth > 1088) {
+                document.querySelector('.profileShow').style.marginTop = '-40%'
+            } else {
+                document.querySelector('.profileShow').style.marginTop = '-660px'
+            }
         } else if (document.querySelector('main').style.height === '80vh') {
             document.querySelector('.profileShow').style.display = 'flex'
-            document.querySelector('.profileShow').style.marginTop = '-482px'
+            if (screen.availWidth < 1595 && screen.availWidth > 1088) {
+                document.querySelector('.profileShow').style.marginTop = '-29%'
+            } else {
+                document.querySelector('.profileShow').style.marginTop = '-482px'
+            }
         }
     }
 }
@@ -194,7 +228,7 @@ function borderAddRemove() {
 
 function heartRemove() {
     document.querySelector('.heart').style.display = 'none'
-    if(document.querySelector('.profileShow').style.display === 'flex') {
+    if (document.querySelector('.profileShow').style.display === 'flex') {
         document.querySelector('header').style.zIndex = '99'
     } else {
         document.querySelector('header').style.zIndex = '9999'
@@ -208,7 +242,7 @@ function heartRemove() {
         iconMsg.classList.add('show')
     } else if (document.querySelector('.compass').style.display === 'flex') {
         iconCompass.classList.add('show')
-    } 
+    }
 }
 
 function profileRemove() {
@@ -254,6 +288,13 @@ document.addEventListener('click', (e) => {
         classLoop()
         iconHome.classList.add('show')
         render(iconHome.querySelector('i'))
+    } else if (e.target === document.querySelector('.fa-arrow-left')) {
+        document.querySelector('main').style.height = '100vh'
+        document.querySelector('.main').style.display = 'flex'
+        document.querySelector('.dm').style.display = 'none'
+        document.querySelector('header').style.display = 'flex'
+        document.querySelector('.border-bottom-icons').style.opacity = '1'
+        classLoop()
     } else if (e.target === document.querySelector('.opacity')) {
         borderAddRemove()
         if (addArchive.children[0] === img) {
@@ -411,7 +452,7 @@ document.addEventListener('click', (e) => {
         navigator.clipboard.writeText(RD)
     } else if (e.target) {
         navigator.clipboard.writeText(RD)
-    } 
+    }
 })
 
 function resizeAdd() {
@@ -431,8 +472,10 @@ function resizeAdd() {
 const leftMessages = document.querySelector('.left-messages')
 const messageScroll = document.querySelector('.dm .scroll')
 const scrollPointer = document.querySelector('.dm .scrollPointer')
-messageScroll.style.display = 'flex'
-scrollPointer.style.display = 'flex'
+if (screen.availWidth > 820) {
+    messageScroll.style.display = 'flex'
+    scrollPointer.style.display = 'flex'
+}
 leftMessages.addEventListener('scroll', (e) => {
     document.querySelector('body .scrollPointer').style.display = 'none'
     document.querySelector('body .scroll').style.display = 'none'
@@ -461,13 +504,16 @@ for (i = 0; i < 7; i++) {
     document.querySelectorAll('.contact img')[i].src = `assets/images/users/user${i + 1}.jpg`
     document.querySelectorAll('.contact-info h4')[i].textContent = `${userName[i].toLowerCase()}`
 }
-for (i = 0; i < 6; i++) {
-    document.querySelectorAll('.story img:nth-child(2)')[i].src = `assets/images/users/user${i + 1}.jpg`
+for (i = 0; i < 7; i++) {
+    document.querySelectorAll('.story img:nth-child(2)')[i].src = `assets/images/users/user${i}.jpg`
     let arr4 = []
     arr4.push(...userName[i])
     arr4.splice(-5)
-    document.querySelectorAll('.story h2')[i].textContent = `${arr4.join('').toLowerCase()}...`
-
+    if(i <= 5) {
+        document.querySelectorAll('.story h2')[i + 1].textContent = `${arr4.join('').toLowerCase()}...`
+    } else {
+        document.querySelectorAll('.story h2')[i + 1].textContent = `instaUser`
+    }
 }
 for (i = 0; i < 5; i++) {
     document.querySelectorAll('.otherProfile img')[i].src = `assets/images/users/user${i + 8}.jpg`
@@ -544,3 +590,40 @@ document.querySelector('.rd_button').addEventListener('click', (e) => {
         }, 2000)
     }
 })
+
+// Responsive 
+
+const scrollStyle = document.createElement('style')
+scrollStyle.innerHTML = `
+.left-messages {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.left-messages::-webkit-scrollbar {
+    display: none;
+}
+`
+setInterval(() => {
+    if (document.querySelector('.dm').style.display === 'flex' && screen.availWidth <= 820) {
+        document.querySelector('header').style.display = 'none'
+        document.querySelector('.dm').style.height = '142%'
+        if(document.querySelector('.dm').children[0] === document.querySelector('.dm .scrollPointer') && document.querySelector('.dm').children[1] === document.querySelector('.dm .scroll')){
+            document.querySelector('.dm .scrollPointer').style.display = 'none'
+            document.querySelector('.dm .scroll').style.display = 'none'
+        }
+        document.querySelector('.border-bottom-icons').style.opacity = '0'
+        document.querySelector('.mobile-back').style.display = 'flex'
+    } 
+    else {
+        document.querySelector('.dm .scrollPointer').style.display = 'flex'
+        document.querySelector('.dm .scroll').style.display = 'flex'
+    }
+    if(screen.availWidth > 820 && screen.availWidth < 1087) {
+        document.querySelector('header').style.display = 'flex'
+        document.querySelector('.dm').style.height = '126%'
+    }
+}, 1000)
+
+document.querySelector('.story.mobile').querySelectorAll('img')[1].src = 'assets/images/users/me.jpg'
+document.querySelector('.story.mobile').querySelector('h2').textContent = 'Seu story'

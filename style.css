@@ -363,6 +363,10 @@ main {
     object-fit: cover;
 }
 
+.mobile {
+    display: none;
+}
+
 .story h2 {
     font-size: 12px;
     font-weight: 400;
@@ -714,15 +718,11 @@ main {
     margin-left: 90px;
 }
 
-.left-user i:nth-child(2) {
-    margin-left: 10px;
-    flex: 1;
+.left-user i {
+    margin-left: 8%;
+    margin-right: 3%;
 }
 
-.left-user i:nth-child(3) {
-    margin-left: 55px;
-    flex: 1;
-}
 
 .left-messages {
     overflow: scroll;
@@ -870,10 +870,10 @@ main {
 }
 
 .right i {
-    margin-top: 10px;
+    margin-top: 5%;
     font-size: 48px;
     transform: rotateZ(30deg);
-    margin-right: 5px;
+    margin-right: -1%;
 }
 
 .right h3 {
@@ -1342,4 +1342,42 @@ main {
     text-transform: uppercase;
     cursor: pointer;
     font-weight: 600;
+}
+
+.border-bottom {
+    display: flex;
+    position: fixed;
+    top: 95%;
+    background-color: #000;
+    height: 60px;
+    width: 100%;
+    opacity: 0;
+    border-top: 1px solid #424242;
+}
+
+.border-bottom-icons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.border-bottom-icon {
+    height: 50px;
+    width: 50px;
+    padding: 0 10%;
+}
+
+.border-bottom-icon i {
+    font-size: 24px;
+}
+
+.border-bottom-icon img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+}
+
+.mobile-back {
+    display: none;
+    margin-left: 5%;
 }
